@@ -3,7 +3,7 @@
 trap "exit" INT TERM
 trap "kill 0" EXIT
 
-mongod --dbpath /data/db2 --bindip 0.0.0.0 &
+mongod --dbpath /data/db2 --bind_ip 0.0.0.0 &
 (cd explainshell && env HOST_IP=0.0.0.0 make serve) &
 env EXPLAINSHELL_ENDPOINT=http://localhost:5000 lsp-adapter --trace --glob="*.sh:*.bash:*.zsh" --proxyAddress=0.0.0.0:8080 bash-language-server start &
 
